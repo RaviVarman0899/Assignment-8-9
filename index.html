@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .success-message {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form id="registration-form">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" required>
+        <label for="female">Female</label>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" required>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <div class="error-message" id="error-message"></div>
+    <div class="success-message" id="success-message"></div>
+
+    <script>
+        const form = document.getElementById("registration-form");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission to validate the form
+
+    const firstName = form.firstName.value;
+    const lastName = form.lastName.value;
+    const dob = form.dob.value;
+    const gender = form.querySelector('input[name="gender"]:checked');
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    // Check if any input fields are empty
+    if (firstName === "" || lastName === "" || dob === "" || !gender || password === "" || confirmPassword === "") {
+        errorMessage.innerHTML = "All fields are required.";
+    }
+    // Check if passwords match
+    else if (password !== confirmPassword) {
+        errorMessage.innerHTML = "Passwords do not match.";
+       
+    }
+    // All validations passed, display success message
+    else {
+        
+        successMessage.innerHTML = "Registration successful!";
+     
+    }
+});
+    </script>
+</body>
+</html>
